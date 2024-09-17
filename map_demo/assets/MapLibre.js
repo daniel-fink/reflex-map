@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Map from "react-map-gl/maplibre";
+import Map from "react-map-gl";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "@stadiamaps/maplibre-search-box/dist/style.css";
