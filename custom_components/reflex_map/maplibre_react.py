@@ -20,6 +20,9 @@ def get_maplibre_js():
     export const MapLibre = (props) => {
       const [map, setMap] = useState(null);
 
+      // We need to handle these controls dynamically as well.
+      // Whether that's injecting custom code or finding a way to handle this within Reflex.
+      // At the moment it looks like injecting custom code is the way to go but we just need to find a way to make it easier.
       useEffect(() => {
         if (!map) return;
         const fullScreenControl = new maplibregl.FullscreenControl();
@@ -29,6 +32,8 @@ def get_maplibre_js():
           useMapFocusPoint: true,
         });
 
+        // Still need a way to handle the legend, need to be able to dynamically generate
+        // this based on the Reflex configuration.
         const legendControl = new MaplibreLegendControl(
           { google_maps: "Google Maps" },
           {
