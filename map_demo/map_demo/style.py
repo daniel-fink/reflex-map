@@ -8,7 +8,7 @@ style = {
         "position": "fixed",
         "right": "0",
         "top": "0",
-        "width": "300px",
+        "width": "250px",
         "height": "calc(100vh - 40px)",
         "background-color": "#f4f4f4",
         "box-shadow": "-2px 0 10px rgba(0, 0, 0, 0.1)",

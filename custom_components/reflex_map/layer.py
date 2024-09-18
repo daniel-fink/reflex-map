@@ -6,7 +6,6 @@ class Layer(rx.Component):
     library = "react-map-gl"
     tag = "Layer"
 
-    id: str = ""
     type: str = ""
     source: str = ""
     layout: dict = {"visibility": "none"}

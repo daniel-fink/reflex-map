@@ -7,6 +7,7 @@
 
 from typing import Any, Dict, List
 import reflex as rx
+from reflex_map.maplibre_react import get_maplibre_js
 
 class MapState(rx.State):
     latitude: rx.Var[float] = 37.9677487
@@ -59,20 +60,37 @@ def _on_map_layer_mouse_event(e0: _MapLayerMouseEvent) -> Dict[str, float]:
 class Map(rx.Component):
     # This import won't for anyone else unless they include our custom react component within their public assets
     # TODO: Find some way to do this without using a custom react component
-    library = "/public/MapLibre"
     tag = "MapLibre"
+
     mapboxAccessToken: rx.Var[str]
     initialViewState: rx.Var[dict]
     mapStyle: rx.Var[str]
     lib_dependencies: list[str] = ["react-map-gl", "pmtiles", "mapbox-gl", "@stadiamaps/maplibre-search-box", "@watergis/maplibre-gl-legend", "maplibre-gl"]
 
+    def _get_imports(self) -> Any:
+        return rx.utils.imports.merge_imports(
+            super()._get_imports() | {
+                "react": {rx.vars.ImportVar(tag="useEffect"), rx.vars.ImportVar(tag="useState"), rx.vars.ImportVar(tag="useCallback")},
+            }
+        )
+
+
     def _get_custom_code(self) -> str | None:
-        return """
-// extract only the features if they exist
-const extractFeatureFromEvent = (features) => {
-    return features
-}
-"""
+        return get_maplibre_js()
+
+    def add_imports(self) -> Dict[str, str | rx.ImportVar | List[str | rx.ImportVar]]:
+        return {
+            "maplibre-gl": "* as maplibregl",
+            "maplibre-gl/dist/maplibre-gl.css": None,
+            "@stadiamaps/maplibre-search-box/dist/style.css": None,
+            "@watergis/maplibre-gl-legend/dist/maplibre-gl-legend.css": None,
+            "pmtiles": "* as pmtiles",
+        }
+
+    def add_imports(self) -> dict[str, str]:
+        return {"react": "useEffect"}
+
+
 
     def get_event_triggers(self) -> dict[str, Any]:
         return {
