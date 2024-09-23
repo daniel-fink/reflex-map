@@ -1,11 +1,6 @@
-"""MapLibre custom map component within Reflex"""
+"""MapLibre Reflex Component"""
 
-# Just a note on this file: 
-# I was having trouble installing this component, I could never get it to work and sank too much time into playing around with it.
-# I'm de-referencing it in my latest changes, most of the code was duplicated anyway, 
-# but I do really like the idea to keep it seperated into a custom component. I'll keep it in the repo for now.
-
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 import reflex as rx
 from reflex_map.maplibre_react import get_maplibre_js
 
@@ -53,45 +48,32 @@ def _on_map_layer_mouse_event(e0: _MapLayerMouseEvent) -> Dict[str, float]:
         e0.event,
         rx.Var.create_safe(
             f"extractFeatureFromEvent({e0.features})",
+            _var_is_string=False
         ),
     ]
 
 
 class Map(rx.Component):
-    # This import won't for anyone else unless they include our custom react component within their public assets
-    # TODO: Find some way to do this without using a custom react component
     tag = "MapLibre"
 
     mapboxAccessToken: rx.Var[str]
     initialViewState: rx.Var[dict]
     mapStyle: rx.Var[str]
-    lib_dependencies: list[str] = ["react-map-gl", "pmtiles", "mapbox-gl", "@stadiamaps/maplibre-search-box", "@watergis/maplibre-gl-legend", "maplibre-gl"]
+    terrain: Optional[Dict[str, Any]]
 
-    def _get_imports(self) -> Any:
-        return rx.utils.imports.merge_imports(
-            super()._get_imports() | {
-                "react": {rx.vars.ImportVar(tag="useEffect"), rx.vars.ImportVar(tag="useState"), rx.vars.ImportVar(tag="useCallback")},
-            }
-        )
+    lib_dependencies: list[str] = ["react-map-gl", "pmtiles", "mapbox-gl", "maplibre-gl"]
 
-
+    def add_imports(self):
+      return {
+            "react-map-gl": {rx.ImportVar(tag="Map", is_default=True)},
+            "pmtiles": {rx.ImportVar(tag="* as pmtiles", is_default=True)},
+            "maplibre-gl":{rx.ImportVar(tag="maplibregl", is_default=True)},
+            "": ["maplibre-gl/dist/maplibre-gl.css"],
+      }
+    
     def _get_custom_code(self) -> str | None:
         return get_maplibre_js()
-
-    def add_imports(self) -> Dict[str, str | rx.ImportVar | List[str | rx.ImportVar]]:
-        return {
-            "maplibre-gl": "* as maplibregl",
-            "maplibre-gl/dist/maplibre-gl.css": None,
-            "@stadiamaps/maplibre-search-box/dist/style.css": None,
-            "@watergis/maplibre-gl-legend/dist/maplibre-gl-legend.css": None,
-            "pmtiles": "* as pmtiles",
-        }
-
-    def add_imports(self) -> dict[str, str]:
-        return {"react": "useEffect"}
-
-
-
+    
     def get_event_triggers(self) -> dict[str, Any]:
         return {
             **super().get_event_triggers(),
@@ -102,11 +84,6 @@ class Map(rx.Component):
 def map() -> rx.Component:
     return Map.create(
         mapStyle="https://tiles.stadiamaps.com/styles/alidade_smooth.json", # this is just another map style
-        initialViewState=dict(
-            longitude=MapState.longitude, latitude=MapState.latitude, zoom=10
-        ),
-        on_click=MapState.set_selected_feature,
-        on_mouse_move=MapState.set_hovered_feature,
     )
 
 map = Map.create

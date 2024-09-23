@@ -1,84 +1,80 @@
 """Welcome to Reflex! This file showcases the custom component in a basic app."""
 
-from typing import Any, Dict, List
-
 import reflex as rx
 
-from reflex_map import map
-from reflex_map import source
-from reflex_map import layer
-from reflex_map import popup
+from .examples.terrain_demo import terrain_demo
+
+from .layout.topnav import topnav
+from .layout.sidebar import sidebar
+from .examples.default_demo import default_map
 
 from .style import style
 
 filename = f"{rx.config.get_config().app_name}/{rx.config.get_config().app_name}.py"
 
-class MapState(rx.State):
-    latitude: rx.Var[float] = -33.865143
-    longitude: rx.Var[float] = 151.2099
-
-    hoveredFeatures: rx.Var[List[Dict[str, Any]]] = []
-    selectedFeatures: rx.Var[List[Dict[str, Any]]] = []
-
-    def set_hovered_feature(self, event, features):
-        if features:
-            self.hoveredFeatures = features
-        else:
-            self.hoveredFeatures = {}
-
-    def set_selected_feature(self, event, features):
-        if features:
-            self.selectedFeatures = features
-            self.hoveredFeatures = []
-        else:
-            self.selectedFeatures = []
-
-    
+lib_dependencies: list[str] = ["react-map-gl"]
+def add_imports(self):
+    return {
+        "react-syntax-highlighter": {rx.ImportVar(tag="PrismAsyncLight as SyntaxHighlighter")},
+    }
 
 def index() -> rx.Component:
-    return rx.box(
-        rx.box(
-            "Top Nav",
-            class_name="topNav",
-        ),
-        rx.box(
-            map(
-                source(
-                    layer(
-                        type="raster",
-                        source="google_maps",
-                        id="google_maps",
-                        layout={"visibility": "none"},
-                    ),
-                    type="raster",
-                    title="Google Maps",
-                    id="google_maps",
-                    tileSize=256,
-                    tiles=["https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"],
+    return rx.container(
+        topnav(),
+        rx.stack(
+            sidebar(),
+            rx.box(
+                rx.heading("Introduction", size="8", fontWeight="lighter"),
+                rx.box(
+                    rx.link("MapLibre GL JS", href="https://maplibre.org/maplibre-gl-js/docs/"),
+                    rx.box(" is a TypeScript library that uses WebGL to render interactive maps from vector tiles in a browser. The customization of the map complies with the ", display="inline"),
+                    rx.link("MapLibre Style Spec", href="https://maplibre.org/maplibre-style-spec"),
+                    rx.box(". It is part of the ", display="inline"),
+                    rx.link("MapLibre ecosystem", href="https://github.com/maplibre"),
+                    rx.box(", with a counterpart for Android, iOS, and other platforms called ", display="inline"),
+                    rx.link("MapLibre Native", href="https://github.com/maplibre/maplibre-native"),
+                    rx.box(".", display="inline")
                 ),
-                popup(
-                    rx.text("POPUP"),
-                    latitude=-33.865143,
-                    longitude=151.209900,
-                    anchor="bottom"
+                rx.box(
+                    rx.text("Our Python integration of MapLibre is built on the powerful MapLibre GL JS library, which uses WebGL to render interactive maps from vector tiles directly in the browser."),
+                    rx.text("With our Reflex-based solution, Python users can now fully customize maps using the same MapLibre Style Spec, offering precise control over map design and appearance."),
+                    rx.text("This project brings the flexibility of MapLibre’s ecosystem—previously accessible primarily through JavaScript—into the hands of Python developers."),
+                    rx.text("Just like MapLibre GL JS has its native counterparts for Android and iOS, our Reflex integration is tailored for Python, making high-performance mapping and geospatial visualization available to an even wider audience."),
+                    display="flex",
+                    flex_direction="column",
+                    gap="16px"
                 ),
-                initialViewState=dict(
-                    longitude=MapState.longitude, latitude=MapState.latitude, zoom=10
-                ),
-                on_click=MapState.set_selected_feature,
-                on_mouse_move=MapState.set_hovered_feature,
-                mapStyle="https://tiles.stadiamaps.com/styles/alidade_smooth.json",
+                rx.box(
+                    rx.heading("Quick Start", size="7", fontWeight="lighter"),
+                    default_map(),
+                    rx.box(
+                        rx.text("Install the reflex-map via pip."),
+                        rx.code("pip install reflex-map"),
+                        rx.text("You can then import the reflex-map MapLibre GL module in your project."),
+                        display="flex",
+                        flex_direction="column",
+                        gap="12px"
+                    ),                        
+                    display="flex",
+                    flex_direction="column",
+                    gap="48px",
+                    width="100%"
+                ),          
+                display="flex",
+                flex_direction="column",
+                gap="48px"
             ),
+            
             class_name="content",
         ),
-        rx.box(
-            rx.text("Sidebar"),
-            class_name="sidebar",
-        ),
+
         class_name="wrapper",
+        size="4"
     )
 
 
 # Add state and page to the app.
 app = rx.App(style=style)
 app.add_page(index)
+app.add_page(index, "/", "Home")
+app.add_page(terrain_demo, "/terrain", "Terrain")
