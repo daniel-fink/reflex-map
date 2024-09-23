@@ -7,7 +7,6 @@ class Source(rx.Component):
     tag = "Source"
     
     type: str = ""
-    id: str = ""
     title: str = ""
     tileSize: int = 256
     tiles: list[str] = []

@@ -45,14 +45,14 @@ def index() -> rx.Component:
             map(
                 source(
                     layer(
-                        id="google_maps",
                         type="raster",
                         source="google_maps",
+                        id="google_maps",
                         layout={"visibility": "none"},
                     ),
                     type="raster",
-                    id="google_maps",
                     title="Google Maps",
+                    id="google_maps",
                     tileSize=256,
                     tiles=["https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"],
                 ),
@@ -60,7 +60,7 @@ def index() -> rx.Component:
                     rx.text("POPUP"),
                     latitude=-33.865143,
                     longitude=151.209900,
-                    anchor="bottom",
+                    anchor="bottom"
                 ),
                 initialViewState=dict(
                     longitude=MapState.longitude, latitude=MapState.latitude, zoom=10
