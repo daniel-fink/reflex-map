@@ -16,8 +16,8 @@ from reflex_map import legend_control
 filename = f"{rx.config.get_config().app_name}/{rx.config.get_config().app_name}.py"
 
 class MapState(rx.State):
-    latitude: rx.Var[float] = -33.865143
-    longitude: rx.Var[float] = 151.2099
+    latitude: rx.Var[float] = 37.9677487
+    longitude: rx.Var[float] = -122.5727462
 
     hoveredFeatures: rx.Var[List[Dict[str, Any]]] = []
     selectedFeatures: rx.Var[List[Dict[str, Any]]] = []
@@ -65,22 +65,6 @@ def default_map() -> rx.Component:
             tileSize=256,
             tiles=["https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"],
         ),
-        source(
-            layer(
-                source="ExampleTiles",
-                type="fill",
-                paint={
-                    "fill-color": "LightGrey",
-                    "fill-opacity": 0.5,
-                    "fill-outline-color": "black",
-                },
-                layout={"visibility": "visible"},
-            ),
-            type="vector",
-            id="ExampleTiles",
-            title="ExampleTiles",
-            url="pmtiles://https://data.source.coop/protomaps/openstreetmap/tiles/v3.pmtiles",
-        ),
         popup(
             rx.text("POPUP"),
             latitude=-33.865143,
@@ -91,6 +75,7 @@ def default_map() -> rx.Component:
         navigation_control(),
         fullscreen_control(),
         legend_control(),
+
         initialViewState=dict(
             longitude=MapState.longitude, latitude=MapState.latitude, zoom=10
         ),

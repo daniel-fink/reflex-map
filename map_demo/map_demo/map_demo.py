@@ -3,6 +3,7 @@
 import reflex as rx
 
 from .examples.terrain_demo import terrain_demo
+from .examples.pmtiles_demo import pmtiles_demo
 
 from .layout.topnav import topnav
 from .layout.sidebar import sidebar
@@ -78,3 +79,4 @@ app = rx.App(style=style)
 app.add_page(index)
 app.add_page(index, "/", "Home")
 app.add_page(terrain_demo, "/terrain", "Terrain")
+app.add_page(pmtiles_demo, "/pmtiles", "PMTiles")

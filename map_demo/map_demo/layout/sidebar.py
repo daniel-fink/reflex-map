@@ -2,6 +2,7 @@ import reflex as rx
 
 titles = {
     "Terrain": "terrain",
+    "PMTiles": "pmtiles",
 }
 def render_example_page_links(title: dict) -> rx.Component:
     return rx.link(rx.text(title[0], fontSize="0.825rem"), href=f"/{title[1]}")
