@@ -22,6 +22,13 @@ class Source(rx.Component):
     
     lib_dependencies: list[str] = ["react-map-gl"]
 
+    @classmethod
+    def create(cls, *children, **props) -> 'Source':
+        source_component = super().create(*children, **props)
+        source_component.custom_attrs.update({"ref": None})
+
+        return source_component
+
 
 def source() -> rx.Component:
     return Source.create()

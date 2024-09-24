@@ -9,14 +9,23 @@ class Layer(rx.Component):
     type: str = ""
     metadata: dict | None = None
     source: str | None = None
-    # source-layer: str | None = None # need to figure out this piece for PMTiles
     minzoom: int | None = None
     maxzoom: int | None = None
     filter: list | None = None
     layout: dict | None = None
+    source_layer: str | None = None
     paint: dict = {}
 
-    lib_dependencies: list[str] = ["react-map-gl"]   
+    lib_dependencies: list[str] = ["react-map-gl"]
+
+    @classmethod
+    def create(cls, *children, **props) -> 'Layer':
+        layer_component = super().create(*children, **props)
+        layer_component.custom_attrs.update({"source-layer": props.get("source_layer", "")})
+        layer_component.custom_attrs.update({"ref": None})
+
+        return layer_component
+
 
 def layer() -> rx.Component:
     return Layer.create()
