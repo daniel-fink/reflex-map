@@ -28,42 +28,41 @@ def pmtiles_demo() -> rx.Component:
     return map(
         source(
             layer(
+                id="water",
+                type="fill",
+                paint={ "fill-color": "#80b1d3" },
+                source_layer="water",
+                source="example_source"
+            ),
+            layer(
                 id="buildings",
                 type="fill",
-                paint={ "fill-color": "black" },
-                source_layer="example_source",
-                layout={ "visibility": "visible" },
+                paint={ "fill-color": "#d9d9d9" },
+                source_layer="landuse",
+                source="example_source",
             ),
             layer(
                 id="roads",
                 type="line",
-                paint={ "line-color": "black" },
-                source_layer="example_source",
-                layout={ "visibility": "visible" },
+                paint={ "line-color": "#fc8d62" },
+                source="example_source",
+                source_layer="roads",
             ),
             layer(
-                id="boundaries",
-                type="line",
-                paint={ "line-color": "black", "line-width": 2 },
-                source_layer="example_source",
-                layout={ "visibility": "visible" },
-            ),
-            layer(
-                id="water",
-                type="fill",
-                paint={ "fill-color": "blue" },
-                source_layer="example_source",
-                layout={ "visibility": "visible" },
+                id="pois",
+                type="circle",
+                paint={ "circle-color": "#ffffb3" },
+                source="example_source",
+                source_layer="pois",
             ),
             type="vector",
             id="example_source",
-            url="pmtiles://https://data.source.coop/protomaps/openstreetmap/tiles/v3.pmtiles",
+            url="pmtiles://https://pmtiles.io/protomaps(vector)ODbL_firenze.pmtiles",
         ),
-        zoom=12,
+        zoom=13,
          initialViewState=dict(
-            longitude=-122.5727462, latitude=37.9677487, zoom=13
+            longitude=11.2543435, latitude=43.7672134, zoom=13
         ),
-        mapStyle="https://tiles.stadiamaps.com/styles/alidade_smooth.json",
     )"""),
                 display="flex",
                 flex_direction="column",
@@ -82,40 +81,39 @@ def pmtiles_map() -> rx.Component:
     return map(
         source(
             layer(
+                id="water",
+                type="fill",
+                paint={ "fill-color": "#80b1d3" },
+                source_layer="water",
+                source="example_source"
+            ),
+            layer(
                 id="buildings",
                 type="fill",
-                paint={ "fill-color": "black" },
-                source_layer="example_source",
-                layout={ "visibility": "visible" },
+                paint={ "fill-color": "#d9d9d9" },
+                source_layer="landuse",
+                source="example_source",
             ),
             layer(
                 id="roads",
                 type="line",
-                paint={ "line-color": "black" },
-                source_layer="example_source",
-                layout={ "visibility": "visible" },
+                paint={ "line-color": "#fc8d62" },
+                source="example_source",
+                source_layer="roads",
             ),
             layer(
-                id="boundaries",
-                type="line",
-                paint={ "line-color": "black", "line-width": 2 },
-                source_layer="example_source",
-                layout={ "visibility": "visible" },
-            ),
-            layer(
-                id="water",
-                type="fill",
-                paint={ "fill-color": "blue" },
-                source_layer="example_source",
-                layout={ "visibility": "visible" },
+                id="pois",
+                type="circle",
+                paint={ "circle-color": "#ffffb3" },
+                source="example_source",
+                source_layer="pois",
             ),
             type="vector",
             id="example_source",
-            url="pmtiles://https://data.source.coop/protomaps/openstreetmap/tiles/v3.pmtiles",
+            url="pmtiles://https://pmtiles.io/protomaps(vector)ODbL_firenze.pmtiles",
         ),
-        zoom=12,
+        zoom=13,
          initialViewState=dict(
-            longitude=-122.5727462, latitude=37.9677487, zoom=13
+            longitude=11.2543435, latitude=43.7672134, zoom=13
         ),
-        mapStyle="https://tiles.stadiamaps.com/styles/alidade_smooth.json",
     )
