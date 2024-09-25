@@ -1,11 +1,14 @@
 [project]
 name = "reflex-map"
-version = "0.1.0"
+version = "0.1.1"
 description = "Reflex Map Component"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10"
-authors = [{ name = "Daniel Fink & Nathan Bryant", email = "danfink@mit.edu" }]
+authors = [
+    { name = "Daniel Fink", email = "danfink@mit.edu" },
+    { name = "Nathan Bryant", email = "nathan@nathanbryant.dev" }
+]
 keywords = ["reflex", "reflex-custom-component", "map"]
 
 [project.urls]
@@ -19,7 +22,7 @@ dev = ["build", "twine"]
 
 [tool.poetry]
 name = "reflex-map"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Daniel Fink <danfink@mit.edu>"]
 readme = "README.md"

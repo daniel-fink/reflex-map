@@ -47,7 +47,7 @@ class _MapLayerMouseEvent(rx.Base):
     # Below features are what we are interested in
     features: List[Dict[str, Any]]
 
-def _on_map_layer_mouse_event(e0: _MapLayerMouseEvent) -> Dict[str, float]:
+def _on_map_layer_mouse_event(e0: _MapLayerMouseEvent) -> List[rx.Var]:
     """Maps the onClick args from javascript to the event handled by the Reflex backend in python."""
     return [
         e0.event,
@@ -65,7 +65,14 @@ class Map(rx.Component):
     mapboxAccessToken: rx.Var[str]
     initialViewState: rx.Var[dict]
     mapStyle: rx.Var[str]
-    lib_dependencies: list[str] = ["react-map-gl", "pmtiles", "mapbox-gl", "@stadiamaps/maplibre-search-box", "@watergis/maplibre-gl-legend", "maplibre-gl"]
+    lib_dependencies: list[str] = [
+        "react-map-gl",
+        "mapbox-gl",
+        "maplibre-gl"
+        "pmtiles",
+        "@stadiamaps/maplibre-search-box",
+        "@watergis/maplibre-gl-legend",
+    ]
 
     def _get_imports(self) -> Any:
         return rx.utils.imports.merge_imports(

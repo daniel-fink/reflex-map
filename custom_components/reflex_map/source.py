@@ -1,11 +1,12 @@
 """React-map-gl Source Component."""
 
-import reflex as rx 
+import reflex as rx
+
 
 class Source(rx.Component):
     library = "react-map-gl"
     tag = "Source"
-    
+
     type: str = ""
     title: str = ""
     tileSize: int = 256
@@ -16,5 +17,6 @@ class Source(rx.Component):
 
 def source() -> rx.Component:
     return Source.create()
+
 
 source = Source.create
