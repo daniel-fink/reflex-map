@@ -1,12 +1,9 @@
 """Welcome to Reflex! This file showcases the custom component in a basic app."""
 
 import reflex as rx
+import reflex_map as rx_map
 
-from ..layout import sidebar, topnav
-from reflex_map import map
-from reflex_map import source
-from reflex_map import layer
-
+from ..layout import *
 
 def pmtiles_demo() -> rx.Component:
     return rx.container(
@@ -78,30 +75,30 @@ def pmtiles_demo() -> rx.Component:
 
 
 def pmtiles_map() -> rx.Component:
-    return map(
-        source(
-            layer(
+    return rx_map.map(
+        rx_map.source(
+            rx_map.layer(
                 id="water",
                 type="fill",
                 paint={ "fill-color": "#80b1d3" },
                 source_layer="water",
                 source="example_source"
             ),
-            layer(
+            rx_map.layer(
                 id="buildings",
                 type="fill",
                 paint={ "fill-color": "#d9d9d9" },
                 source_layer="landuse",
                 source="example_source",
             ),
-            layer(
+            rx_map.layer(
                 id="roads",
                 type="line",
                 paint={ "line-color": "#fc8d62" },
                 source="example_source",
                 source_layer="roads",
             ),
-            layer(
+            rx_map.layer(
                 id="pois",
                 type="circle",
                 paint={ "circle-color": "#ffffb3" },

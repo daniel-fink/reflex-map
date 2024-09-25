@@ -3,15 +3,7 @@
 from typing import Any, Dict, List
 
 import reflex as rx
-
-from reflex_map import map
-from reflex_map import source
-from reflex_map import layer
-from reflex_map import popup
-from reflex_map import search_control
-from reflex_map import navigation_control
-from reflex_map import fullscreen_control
-from reflex_map import legend_control
+import reflex_map as rx_map
 
 filename = f"{rx.config.get_config().app_name}/{rx.config.get_config().app_name}.py"
 
@@ -40,9 +32,9 @@ def render_demo(title: str):
 
 
 def default_map() -> rx.Component:
-    return map(
-        source(
-            layer(
+    return rx_map.map(
+        rx_map.source(
+            rx_map.layer(
                 source="google_maps",
                 type="raster",
                 layout={"visibility": "none"},
@@ -53,8 +45,8 @@ def default_map() -> rx.Component:
             tileSize=256,
             tiles=["https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"],
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 source="google_satellite",
                 type="raster",
                 layout={"visibility": "none"},
@@ -65,16 +57,16 @@ def default_map() -> rx.Component:
             tileSize=256,
             tiles=["https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"],
         ),
-        popup(
+        rx_map.popup(
             rx.text("POPUP"),
             latitude=-33.865143,
             longitude=151.209900,
             anchor="bottom"
         ),
-        search_control(),
-        navigation_control(),
-        fullscreen_control(),
-        legend_control(),
+        rx_map.search_control(),
+        rx_map.navigation_control(),
+        rx_map.fullscreen_control(),
+        rx_map.legend_control(),
 
         initialViewState=dict(
             longitude=151.209900, latitude=-33.865143, zoom=10

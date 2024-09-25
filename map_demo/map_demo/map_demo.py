@@ -2,14 +2,12 @@
 
 import reflex as rx
 
-from .examples.terrain_demo import terrain_demo
-from .examples.pmtiles_demo import pmtiles_demo
+# from .examples import *
 
-from .layout.topnav import topnav
-from .layout.sidebar import sidebar
-from .examples.default_demo import default_map
+from .examples import *
+from .layout import *
+from .style import *
 
-from .style import style
 
 filename = f"{rx.config.get_config().app_name}/{rx.config.get_config().app_name}.py"
 

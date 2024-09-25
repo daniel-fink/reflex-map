@@ -1,37 +1,40 @@
 [project]
 name = "reflex-map"
-version = "0.0.1"
-description = "Reflex custom component map"
+version = "0.2.0"
+description = "Reflex Map Component"
 readme = "README.md"
 license = { text = "Apache-2.0" }
-requires-python = ">=3.8"
-authors = [{ name = "", email = "YOUREMAIL@domain.com" }]
-keywords = ["reflex","reflex-custom-components"]
+requires-python = ">=3.10"
+authors = [
+    { name = "Daniel Fink", email = "danfink@mit.edu" },
+    { name = "Nathan Bryant", email = "nathan@nathanbryant.dev" }
+]
+keywords = ["reflex", "reflex-custom-component", "map"]
 
-[tool.poetry]
+[project.urls]
+homepage = "https://github.com/daniel-fink/reflex-map"
+source = "https://github.com/daniel-fink/reflex-map"
+
+
+[tool.poetry] # Required for Poetry
 name = "reflex-map"
-version = "0.1.0"
+version = "0.0.0"
 description = ""
-authors = ["Daniel Fink <danfink@mit.edu>"]
+authors = [""]
 readme = "README.md"
-package-mode = false
+packages = [
+    { include = "reflex_map", from = "custom_components" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-reflex = "^0.5.8"
-pandas = "^2.2.2"
-plotly = "^5.24.0"
+reflex = "^0.6.0"
 
+[tool.setuptools.packages.find]
+where = ["custom_components"]
 
 [build-system]
 requires = ["setuptools", "wheel", "poetry-core"]
 build-backend = "setuptools.build_meta"
-#build-backend = "poetry.core.masonry.api"
+# build-backend = "poetry.core.masonry.api"
 
-[project.urls]
-
-[project.optional-dependencies]
-dev = ["build", "twine"]
-
-[tool.setuptools.packages.find]
-where = ["custom_components"]
