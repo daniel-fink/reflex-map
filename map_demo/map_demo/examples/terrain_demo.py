@@ -1,13 +1,9 @@
 """Welcome to Reflex! This file showcases the custom component in a basic app."""
 
 import reflex as rx
+import reflex_map as rx_map
 
-from ..layout import sidebar, topnav
-from reflex_map import map
-from reflex_map import source
-from reflex_map import layer
-from reflex_map import terrain_control
-
+from ..layout import *
 
 def terrain_demo() -> rx.Component:
     return rx.container(
@@ -78,10 +74,10 @@ def terrain_demo() -> rx.Component:
 
 
 def terrain_map() -> rx.Component:
-    return map(
-        terrain_control(),
-        source(
-            layer(
+    return rx_map.map(
+        rx_map.terrain_control(),
+        rx_map.source(
+            rx_map.layer(
                 source="osm",
                 type="raster",
             ),
@@ -93,8 +89,8 @@ def terrain_map() -> rx.Component:
             attribution="&copy; OpenStreetMap Contributors",
             maxzoom=19
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 source="hillshade",
                 type="hillshade",
                 paint={"hillshade-shadow-color": "#473B24"},
@@ -104,7 +100,7 @@ def terrain_map() -> rx.Component:
             url="https://demotiles.maplibre.org/terrain-tiles/tiles.json",
             tileSize=256,
         ),
-        source(
+        rx_map.source(
             id="terrain",
             type="raster-dem",
             url="https://demotiles.maplibre.org/terrain-tiles/tiles.json",
@@ -112,7 +108,7 @@ def terrain_map() -> rx.Component:
         ),
         terrain={"source": "terrain", "exaggeration": 1},
         zoom=12,
-         initialViewState=dict(
+        initialViewState=dict(
             longitude=11.39085, latitude=47.27574, zoom=12, pitch=70
         ),
     )
