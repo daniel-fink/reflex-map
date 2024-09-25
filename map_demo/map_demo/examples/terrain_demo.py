@@ -112,7 +112,7 @@ def terrain_map() -> rx.Component:
         ),
         terrain={"source": "terrain", "exaggeration": 1},
         zoom=12,
-         initialViewState=dict(
+        initialViewState=dict(
             longitude=11.39085, latitude=47.27574, zoom=12, pitch=70
         ),
     )

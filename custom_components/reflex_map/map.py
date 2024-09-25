@@ -5,11 +5,11 @@ import reflex as rx
 from reflex_map.maplibre_react import get_maplibre_js
 
 class MapState(rx.State):
-    latitude: rx.Var[float] = 37.9677487
-    longitude: rx.Var[float] = -122.5727462
+    latitude: float | None = 37.9677487
+    longitude: float | None = -122.5727462
     
-    hoveredFeatures: rx.Var[List[Dict[str, Any]]] = []
-    selectedFeatures: rx.Var[List[Dict[str, Any]]] = []
+    hoveredFeatures: Dict[str, Any] = []
+    selectedFeatures: Dict[str, Any] = []
 
     def set_hovered_feature(self, event, features):
         if features:
@@ -56,10 +56,11 @@ def _on_map_layer_mouse_event(e0: _MapLayerMouseEvent) -> Dict[str, float]:
 class Map(rx.Component):
     tag = "MapLibre"
 
-    mapboxAccessToken: rx.Var[str]
-    initialViewState: rx.Var[dict]
-    mapStyle: rx.Var[str]
+    initialViewState: dict | None
+    mapStyle: str | None
     terrain: Optional[Dict[str, Any]]
+    longitude: float | None
+    latitude: float | None
 
     lib_dependencies: list[str] = ["react-map-gl", "pmtiles", "mapbox-gl", "maplibre-gl"]
 

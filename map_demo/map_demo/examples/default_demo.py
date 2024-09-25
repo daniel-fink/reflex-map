@@ -16,11 +16,11 @@ from reflex_map import legend_control
 filename = f"{rx.config.get_config().app_name}/{rx.config.get_config().app_name}.py"
 
 class MapState(rx.State):
-    latitude: rx.Var[float] = 37.9677487
-    longitude: rx.Var[float] = -122.5727462
+    latitude: float = 37.9677487
+    longitude: float = -122.5727462
 
-    hoveredFeatures: rx.Var[List[Dict[str, Any]]] = []
-    selectedFeatures: rx.Var[List[Dict[str, Any]]] = []
+    hoveredFeatures: List[Dict[str, Any]] = []
+    selectedFeatures: List[Dict[str, Any]] = []
 
     def set_hovered_feature(self, event, features):
         if features:
@@ -77,7 +77,7 @@ def default_map() -> rx.Component:
         legend_control(),
 
         initialViewState=dict(
-            longitude=MapState.longitude, latitude=MapState.latitude, zoom=10
+            longitude=151.209900, latitude=-33.865143, zoom=10
         ),
         on_click=MapState.set_selected_feature,
         on_mouse_move=MapState.set_hovered_feature,
