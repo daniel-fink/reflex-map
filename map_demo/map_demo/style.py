@@ -5,17 +5,7 @@ style = {
         "overflow": "auto",
     },
     ".sidebar": {
-        "position": "fixed",
-        "right": "0",
-        "top": "0",
         "width": "250px",
-        "height": "calc(100vh - 40px)",
-        "background-color": "#f4f4f4",
-        "box-shadow": "-2px 0 10px rgba(0, 0, 0, 0.1)",
-        "padding": "20px",
-        "z-index": "100",
-        "margin-top": "40px",
-        "overflow": "auto",
     },
     ".topNav": {
         "color": "white",
@@ -23,27 +13,33 @@ style = {
         "top": "0",
         "left": "0",
         "width": "100%",
-        "height": "40px",
-        "line-height": "20px",
-        "background-color": "#000e35",
+        "font-size": "1.25rem",
+        "height": "70px",
+        "line-height": "50px",
+        "font-weight": "bold",
+        "background-color": "#295DAA",
         "box-shadow": "0 2px 10px rgba(0, 0, 0, 0.1)",
         "padding": "10px 20px",
         "z-index": "200",
     },
+    ".topNav a": {
+        "color": "white",
+        "text-decoration": "none",
+        "line-height": "50px",
+    },
     ".content": {
-        "margin-top": "40px",
-        "margin-right": "250px",
-        "background-color": "#f9f9f9",
-        "min-height": "calc(100vh - 40px)",
+        "margin-top": "70px",
+        "padding-top": "20px",
+        "margin-bottom": "70px",
     },
     ".maplibregl-canvas-container": {
-        "height": "calc(100vh - 40px) !important"
+        "min-height": "400px"
     },
     "canvas": {
-        "height": "calc(100vh - 40px) !important"
+        "height": "400px"
     },
     ".mapboxgl-control-container": {
         "position": "absolute",
         "bottom": "4px"
-    }
+    },
 }
