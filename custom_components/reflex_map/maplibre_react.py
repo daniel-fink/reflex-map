@@ -1,10 +1,17 @@
 
 # This will return the required React component.
 # TODO: Any suggestions on how to improve this and handle all of this directly within Reflex would be greatly appreciated.
+
 def get_maplibre_js():
     return """
-    const extractFeatureFromEvent = (features) => {
-        return features;
+    const extractSafeEvent = (features, lngLat, point, originalEvent, type) => {
+        return {
+            features,
+            lngLat,
+            point,
+            originalEvent,
+            type,
+        };
     };
 
     export const MapLibre = (props) => {

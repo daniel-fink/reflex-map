@@ -5,7 +5,7 @@ import reflex as rx
 class Popup(rx.Component):
     library = "react-map-gl"
     tag = "Popup"
-
+    
     latitude: float = 37.9677487
     longitude: float = -122.5727462
 
