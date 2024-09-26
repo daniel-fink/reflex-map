@@ -5,6 +5,8 @@ titles = {
     "PMTiles source and protocol": "pmtiles",
     "Extrude polygons for 3D indoor mapping": "3d-extrusion-floorplan",
     "Display feature information on click": "feature-info-on-click",
+    "Display a popup": "popup",
+    "Add a default marker": "add-a-marker",
 }
 def render_example_page_links(title: dict) -> rx.Component:
     return rx.link(rx.text(title[0], fontSize="0.825rem"), href=f"/{title[1]}")
