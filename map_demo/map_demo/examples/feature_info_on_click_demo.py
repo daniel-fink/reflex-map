@@ -2,12 +2,9 @@
 
 from typing import Any, Dict
 import reflex as rx
+import reflex_map as rx_map
 
 from ..layout import sidebar, topnav
-from reflex_map import map
-from reflex_map import source
-from reflex_map import layer
-from reflex_map import popup
 
 class InfoState(rx.State):
     longitude: float = -77.04
@@ -17,6 +14,8 @@ class InfoState(rx.State):
     def set_selected_feature(self, event, data):
         if (data['features']):
             self.description = data['features'][0]['properties']['description']
+        else:
+            self.description = ""
 
         self.clickedLong = data['lngLat']['lng']
         self.clickedLat = data['lngLat']['lat']
@@ -138,7 +137,7 @@ class InfoState(rx.State):
 
 
 def feature_info_on_click_map() -> rx.Component:
-    return map(
+    return rx_map.map(
         # no matter what, this popup just won't work for some reason
         # it's complaining that the types are all wrong
         # no matter what you type it as, it just fails saying value is not a valid "whatever type"
@@ -149,13 +148,13 @@ def feature_info_on_click_map() -> rx.Component:
         #     latitude=InfoState.latitude,
         #     anchor="bottom"
         # ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="background",
                 type="background",
                 paint={"background-color": "#e0dfdf"},
             ),
-            layer(
+            rx_map.layer(
                 id="simple-tiles",
                 type="raster",
                 source="raster-tiles",
@@ -168,8 +167,8 @@ def feature_info_on_click_map() -> rx.Component:
             minzoom=0,
             maxzoom=19,
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="places",
                 type="circle",
                 paint={

@@ -2,12 +2,9 @@
 
 from typing import Any, Dict
 import reflex as rx
+import reflex_map as rx_map
 
 from ..layout import sidebar, topnav
-from reflex_map import map
-from reflex_map import source
-from reflex_map import layer
-from reflex_map import marker
 
 def add_default_marker_demo() -> rx.Component:
     return rx.container(
@@ -73,18 +70,18 @@ def add_default_marker_demo() -> rx.Component:
 
 
 def default_marker_map() -> rx.Component:
-    return map(
-        marker(
+    return rx_map.map(
+        rx_map.marker(
             longitude=-96,
             latitude=37.8,
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="background",
                 type="background",
                 paint={"background-color": "#e0dfdf"},
             ),
-            layer(
+            rx_map.layer(
                 id="simple-tiles",
                 type="raster",
                 source="raster-tiles",

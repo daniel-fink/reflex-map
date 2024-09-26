@@ -3,9 +3,8 @@
 import reflex as rx
 
 from ..layout import sidebar, topnav
-from reflex_map import map
-from reflex_map import source
-from reflex_map import layer
+import reflex_map as rx_map
+
 
 
 def extrude_3d_demo() -> rx.Component:
@@ -84,14 +83,14 @@ def extrude_3d_demo() -> rx.Component:
 
 
 def extrude_3d_map() -> rx.Component:
-    return map(
-        source(
-            layer(
+    return rx_map.map(
+        rx_map.source(
+            rx_map.layer(
                 id="background",
                 type="background",
                 paint={"background-color": "#e0dfdf"},
             ),
-            layer(
+            rx_map.layer(
                 id="simple-tiles",
                 type="raster",
                 source="raster-tiles",
@@ -104,8 +103,8 @@ def extrude_3d_map() -> rx.Component:
             minzoom=0,
             maxzoom=19,
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="room-extrusion",
                 type="fill-extrusion",
                 paint={

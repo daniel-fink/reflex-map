@@ -1,13 +1,9 @@
 """Welcome to Reflex! This file showcases the custom component in a basic app."""
 
-from typing import Any, Dict
 import reflex as rx
+import reflex_map as rx_map
 
 from ..layout import sidebar, topnav
-from reflex_map import map
-from reflex_map import source
-from reflex_map import layer
-from reflex_map import popup
 
 def display_popup_demo() -> rx.Component:
     return rx.container(
@@ -73,20 +69,20 @@ def display_popup_demo() -> rx.Component:
 
 
 def display_a_popup_map() -> rx.Component:
-    return map(
-        popup(
+    return rx_map.map(
+        rx_map.popup(
             rx.html("<h1>Hello World!</h1>"),
             longitude=-96,
             latitude=37.8,
             closeButton=True,
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="background",
                 type="background",
                 paint={"background-color": "#e0dfdf"},
             ),
-            layer(
+            rx_map.layer(
                 id="simple-tiles",
                 type="raster",
                 source="raster-tiles",

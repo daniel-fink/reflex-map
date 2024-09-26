@@ -2,18 +2,10 @@
 
 import reflex as rx
 
-from .examples.terrain_demo import terrain_demo
-from .examples.pmtiles_demo import pmtiles_demo
-from .examples.extrude_3d_demo import extrude_3d_demo
-from .examples.feature_info_on_click_demo import feature_info_on_click_demo
-from .examples.display_popup_demo import display_popup_demo
-from .examples.add_default_marker_demo import add_default_marker_demo
+from .examples import *
+from .layout import *
+from .style import *
 
-from .layout.topnav import topnav
-from .layout.sidebar import sidebar
-from .examples.default_demo import default_map
-
-from .style import style
 
 filename = f"{rx.config.get_config().app_name}/{rx.config.get_config().app_name}.py"
 
