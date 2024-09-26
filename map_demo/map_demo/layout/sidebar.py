@@ -1,8 +1,10 @@
 import reflex as rx
 
 titles = {
-    "Terrain": "terrain",
-    "PMTiles": "pmtiles",
+    "3D Terrain": "3d-terrain",
+    "PMTiles source and protocol": "pmtiles",
+    "Extrude polygons for 3D indoor mapping": "3d-extrusion-floorplan",
+    "Display feature information on click": "feature-info-on-click",
 }
 def render_example_page_links(title: dict) -> rx.Component:
     return rx.link(rx.text(title[0], fontSize="0.825rem"), href=f"/{title[1]}")
@@ -17,3 +19,4 @@ def sidebar() -> rx.Component:
             ),
             class_name="sidebar",
     )
+

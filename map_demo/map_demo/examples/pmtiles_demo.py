@@ -111,9 +111,10 @@ def pmtiles_map() -> rx.Component:
             type="vector",
             id="example_source",
             url="pmtiles://https://pmtiles.io/protomaps(vector)ODbL_firenze.pmtiles",
+            attribution="&copy; Protomaps | &copy; pmtiles.io",
         ),
         zoom=13,
          initialViewState=dict(
-            longitude=11.2543435, latitude=43.7672134, zoom=13
+            longitude=11.2543435, latitude=43.7672134, zoom=13,
         ),
     )
