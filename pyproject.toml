@@ -6,15 +6,14 @@ readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10"
 authors = [
-    { name = "Daniel Fink", email = "danfink@mit.edu" },
+    { name = "Daniel Fink & Nathan Bryant", email = "danfink@mit.edu" },
     { name = "Nathan Bryant", email = "nathan@nathanbryant.dev" }
 ]
-keywords = ["reflex", "reflex-custom-component", "map"]
+keywords = ["reflex", "reflex-custom-component", "map", "maplibre", "mapbox", "maplibre-gl", "mapbox-gl"]
 
 [project.urls]
-homepage = "https://github.com/daniel-fink/reflex-map"
+homepage = "https://reflex-map.reflex.run/"
 source = "https://github.com/daniel-fink/reflex-map"
-
 
 [tool.poetry] # Required for Poetry
 name = "reflex-map"
@@ -32,6 +31,7 @@ reflex = "^0.6.0"
 
 [tool.setuptools.packages.find]
 where = ["custom_components"]
+
 
 [build-system]
 requires = ["setuptools", "wheel", "poetry-core"]

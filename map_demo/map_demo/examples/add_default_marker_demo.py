@@ -22,20 +22,20 @@ def add_default_marker_demo() -> rx.Component:
                 rx.box(
                     default_marker_map(),
                 ),
-                rx.code_block("""def default_marker_map() -> rx.Component:
-    return map(
-        marker(
+                rx.code_block("""
+def default_marker_map() -> rx.Component:
+    return rx_map.map(
+        rx_map.marker(
             longitude=-96,
             latitude=37.8,
-            closeButton=True,
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="background",
                 type="background",
                 paint={"background-color": "#e0dfdf"},
             ),
-            layer(
+            rx_map.layer(
                 id="simple-tiles",
                 type="raster",
                 source="raster-tiles",
@@ -52,8 +52,8 @@ def add_default_marker_demo() -> rx.Component:
         initialViewState=dict(
             longitude=-96, latitude= 37.8, zoom=3
         ),
-    )"""),
-
+    )
+                    """),
                 display="flex",
                 flex_direction="column",
                 gap="48px",

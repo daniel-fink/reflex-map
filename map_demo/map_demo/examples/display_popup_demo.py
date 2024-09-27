@@ -21,21 +21,22 @@ def display_popup_demo() -> rx.Component:
                 rx.box(
                     display_a_popup_map(),
                 ),
-                rx.code_block("""def display_a_popup_map() -> rx.Component:
-    return map(
-        popup(
+                rx.code_block("""
+def display_a_popup_map() -> rx.Component:
+    return rx_map.map(
+        rx_map.popup(
             rx.html("<h1>Hello World!</h1>"),
             longitude=-96,
             latitude=37.8,
             closeButton=True,
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="background",
                 type="background",
                 paint={"background-color": "#e0dfdf"},
             ),
-            layer(
+            rx_map.layer(
                 id="simple-tiles",
                 type="raster",
                 source="raster-tiles",
@@ -52,7 +53,9 @@ def display_popup_demo() -> rx.Component:
         initialViewState=dict(
             longitude=-96, latitude= 37.8, zoom=3
         ),
-    )"""),
+    )
+    
+                    """),
                 display="flex",
                 flex_direction="column",
                 gap="48px",

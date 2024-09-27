@@ -23,15 +23,16 @@ def extrude_3d_demo() -> rx.Component:
                 rx.box(
                     extrude_3d_map(),
                 ),
-                rx.code_block("""def extrude_3d_map() -> rx.Component:
-    return map(
-        source(
-            layer(
+                rx.code_block("""
+def extrude_3d_map() -> rx.Component:
+    return rx_map.map(
+        rx_map.source(
+            rx_map.layer(
                 id="background",
                 type="background",
                 paint={"background-color": "#e0dfdf"},
             ),
-            layer(
+            rx_map.layer(
                 id="simple-tiles",
                 type="raster",
                 source="raster-tiles",
@@ -44,8 +45,8 @@ def extrude_3d_demo() -> rx.Component:
             minzoom=0,
             maxzoom=19,
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="room-extrusion",
                 type="fill-extrusion",
                 paint={
@@ -65,10 +66,11 @@ def extrude_3d_demo() -> rx.Component:
         bearing=20,
         antialias=True,
         initialViewState=dict(
-            longitude=-87.61694, latitude=41.86625, zoom=15.99, pitch=40
+            longitude=-87.61694, latitude=41.86625, zoom=15.99,
+            pitch=10
         ),
     )
-"""),
+                    """),
                 display="flex",
                 flex_direction="column",
                 gap="48px",
