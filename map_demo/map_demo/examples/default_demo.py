@@ -37,41 +37,19 @@ def default_map() -> rx.Component:
             rx_map.layer(
                 source="google_maps",
                 type="raster",
-                layout={"visibility": "none"},
             ),
             type="raster",
             title="Google Maps",
             id="google_maps",
             tileSize=256,
             tiles=["https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"],
-        ),
-        rx_map.source(
-            rx_map.layer(
-                source="google_satellite",
-                type="raster",
-                layout={"visibility": "none"},
-            ),
-            type="raster",
-            title="Google Satellite",
-            id="google_satellite",
-            tileSize=256,
-            tiles=["https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"],
-        ),
-        rx_map.popup(
-            rx.text("POPUP"),
-            latitude=-33.865143,
-            longitude=151.209900,
-            anchor="bottom"
+            attribution="&copy; Google Maps"
         ),
         rx_map.search_control(),
         rx_map.navigation_control(),
         rx_map.fullscreen_control(),
-        rx_map.legend_control(),
 
         initialViewState=dict(
             longitude=151.209900, latitude=-33.865143, zoom=10
         ),
-        on_click=MapState.set_selected_feature,
-        on_mouse_move=MapState.set_hovered_feature,
-        mapStyle="https://tiles.stadiamaps.com/styles/alidade_smooth.json",
     )

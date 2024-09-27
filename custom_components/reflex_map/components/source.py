@@ -9,6 +9,7 @@ class Source(rx.Component):
     type: str = ""
     url: str | None = None
     tiles: list[str] | None = None
+    data: str | dict| None = None
     bounds: list[float] | None = None
     scheme: str | None = None
     minzoom: int | None = None

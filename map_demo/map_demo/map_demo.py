@@ -2,8 +2,6 @@
 
 import reflex as rx
 
-# from .examples import *
-
 from .examples import *
 from .layout import *
 from .style import *
@@ -53,7 +51,29 @@ def index() -> rx.Component:
                         display="flex",
                         flex_direction="column",
                         gap="12px"
-                    ),                        
+                    ),
+                    rx.code_block("""def default_map() -> rx.Component:
+    return map(
+        source(
+            layer(
+                source="google_maps",
+                type="raster",
+            ),
+            type="raster",
+            title="Google Maps",
+            id="google_maps",
+            tileSize=256,
+            tiles=["https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"],
+            attribution="&copy; Google Maps"
+        ),
+        search_control(),
+        navigation_control(),
+        fullscreen_control(),
+
+        initialViewState=dict(
+            longitude=151.209900, latitude=-33.865143, zoom=10
+        ),
+    )"""),
                     display="flex",
                     flex_direction="column",
                     gap="48px",
@@ -76,5 +96,9 @@ def index() -> rx.Component:
 app = rx.App(style=style)
 app.add_page(index)
 app.add_page(index, "/", "Home")
-app.add_page(terrain_demo, "/terrain", "Terrain")
-app.add_page(pmtiles_demo, "/pmtiles", "PMTiles")
+app.add_page(terrain_demo, "/3d-terrain", "3D Terrain")
+app.add_page(pmtiles_demo, "/pmtiles", "PMTiles source and protocol")
+app.add_page(extrude_3d_demo, "/3d-extrusion-floorplan", "Extrude polygons for 3D indoor mapping")
+app.add_page(feature_info_on_click_demo, "/feature-info-on-click", "Display feature information on click")
+app.add_page(display_popup_demo, "/popup", "Display a popup")
+app.add_page(add_default_marker_demo, "/add-a-marker", "Add a default marker")
