@@ -4,7 +4,7 @@ from typing import Any, Dict
 import reflex as rx
 import reflex_map as rx_map
 
-from ..layout import sidebar, topnav
+from ..layout import layout_container
 
 class InfoState(rx.State):
     longitude: float = -77.04
@@ -22,35 +22,32 @@ class InfoState(rx.State):
     
 
 def feature_info_on_click_demo() -> rx.Component:
-    return rx.container(
-        topnav(),
-        rx.stack(
-            sidebar(),
+    return layout_container(
+        rx.box(
+            rx.heading("Display feature information on click", size="8", fontWeight="lighter"),
             rx.box(
-                rx.heading("Display feature information on click", size="8", fontWeight="lighter"),
-                rx.box(
-                    rx.text("When a user clicks a feature, show some text containing more information."),
-                    display="flex",
-                    flex_direction="column",
-                    gap="16px"
-                ),
-                rx.html(
-                    InfoState.description,
+                rx.text("When a user clicks a feature, show some text containing more information."),
+                display="flex",
+                flex_direction="column",
+                gap="16px"
+            ),
+            rx.html(
+                InfoState.description,
 
-                    position="absolute",
-                    marginTop="170px",
-                    marginLeft="12px",
-                    zIndex="4",
-                    pointerEvents="none",
-                    background="rgba(255, 255, 255, 0.8)",
-                    maxWidth="300px",
-                    padding="8px",
-                    borderRadius="4px"
-                ),
-                rx.box(
-                    feature_info_on_click_map(),
-                ),
-                rx.code_block("""
+                position="absolute",
+                marginTop="170px",
+                marginLeft="12px",
+                zIndex="4",
+                pointerEvents="none",
+                background="rgba(255, 255, 255, 0.8)",
+                maxWidth="300px",
+                padding="8px",
+                borderRadius="4px"
+            ),
+            rx.box(
+                feature_info_on_click_map(),
+            ),
+            rx.code_block("""
 class InfoState(rx.State):
     longitude: float = -77.04
     latitude: float = 38.907
@@ -62,7 +59,8 @@ class InfoState(rx.State):
 
         self.clickedLong = data['lngLat']['lng']
         self.clickedLat = data['lngLat']['lat']"""),
-        rx.code_block("""def feature_info_on_click_map() -> rx.Component:
+
+            rx.code_block("""def feature_info_on_click_map() -> rx.Component:
     return map(
         source(
             layer(
@@ -121,18 +119,11 @@ class InfoState(rx.State):
         ),
         on_click=InfoState.set_selected_feature
     )"""),
-                display="flex",
-                flex_direction="column",
-                gap="48px",
-                width="100%"
-                
-            ),
-            style={"position": "relative"},
-            class_name="content",
-        ),
-
-        class_name="wrapper",
-        size="4"
+            display="flex",
+            flex_direction="column",
+            gap="48px",
+            width="100%"
+        )
     )
 
 

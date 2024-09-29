@@ -25,7 +25,6 @@ def _on_map_layer_mouse_event(e0: _MapLayerMouseEvent) -> Dict[str, float]:
         e0.event,
         rx.Var.create_safe(
             f"extractSafeEvent({e0.features}, {e0.lngLat}, {e0.point}, {e0.originalEvent}, {e0.type})",
-            _var_is_string=False
         ),
     ]
 

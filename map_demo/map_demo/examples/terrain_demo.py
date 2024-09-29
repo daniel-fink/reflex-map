@@ -3,25 +3,22 @@
 import reflex as rx
 import reflex_map as rx_map
 
-from ..layout import *
+from ..layout import layout_container
 
 def terrain_demo() -> rx.Component:
-    return rx.container(
-        topnav(),
-        rx.stack(
-            sidebar(),
+    return layout_container(
+        rx.box(
+            rx.heading("Terrain", size="8", fontWeight="lighter"),
             rx.box(
-                rx.heading("Terrain", size="8", fontWeight="lighter"),
-                rx.box(
-                    rx.text("Go beyond hillshade and show elevation in actual 3D."),
-                    display="flex",
-                    flex_direction="column",
-                    gap="16px"
-                ),
-                rx.box(
-                    terrain_map(),
-                ),
-                rx.code_block("""def terrain_map() -> rx.Component:
+                rx.text("Go beyond hillshade and show elevation in actual 3D."),
+                display="flex",
+                flex_direction="column",
+                gap="16px"
+            ),
+            rx.box(
+                terrain_map(),
+            ),
+            rx.code_block("""def terrain_map() -> rx.Component:
     return map(
         terrain_control(),
         source(
@@ -59,17 +56,12 @@ def terrain_demo() -> rx.Component:
          initialViewState=dict(
             longitude=11.39085, latitude=47.27574, zoom=12, pitch=70
         ),
-    )"""),
-                display="flex",
-                flex_direction="column",
-                gap="48px",
-                width="100%"
-            ),
-            class_name="content",
-        ),
-
-        class_name="wrapper",
-        size="4"
+        )"""),
+            display="flex",
+            flex_direction="column",
+            gap="48px",
+            width="100%"   
+        )
     )
 
 

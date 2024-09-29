@@ -3,25 +3,22 @@
 import reflex as rx
 import reflex_map as rx_map
 
-from ..layout import sidebar, topnav
+from ..layout import layout_container
 
 def display_popup_demo() -> rx.Component:
-    return rx.container(
-        topnav(),
-        rx.stack(
-            sidebar(),
+    return layout_container(
+        rx.box(
+            rx.heading("Display a popup", size="8", fontWeight="lighter"),
             rx.box(
-                rx.heading("Display a popup", size="8", fontWeight="lighter"),
-                rx.box(
-                    rx.text("Add a popup to the map."),
-                    display="flex",
-                    flex_direction="column",
-                    gap="16px"
-                ),
-                rx.box(
-                    display_a_popup_map(),
-                ),
-                rx.code_block("""def display_a_popup_map() -> rx.Component:
+                rx.text("Add a popup to the map."),
+                display="flex",
+                flex_direction="column",
+                gap="16px"
+            ),
+            rx.box(
+                display_a_popup_map(),
+            ),
+            rx.code_block("""def display_a_popup_map() -> rx.Component:
     return map(
         popup(
             rx.html("<h1>Hello World!</h1>"),
@@ -53,18 +50,11 @@ def display_popup_demo() -> rx.Component:
             longitude=-96, latitude= 37.8, zoom=3
         ),
     )"""),
-                display="flex",
-                flex_direction="column",
-                gap="48px",
-                width="100%"
-                
-            ),
-            style={"position": "relative"},
-            class_name="content",
+            display="flex",
+            flex_direction="column",
+            gap="48px",
+            width="100%"            
         ),
-
-        class_name="wrapper",
-        size="4"
     )
 
 

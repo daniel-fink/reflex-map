@@ -3,25 +3,22 @@
 import reflex as rx
 import reflex_map as rx_map
 
-from ..layout import *
+from ..layout import layout_container
 
 def pmtiles_demo() -> rx.Component:
-    return rx.container(
-        topnav(),
-        rx.stack(
-            sidebar(),
+    return layout_container(
+        rx.box(
+            rx.heading("PMTiles", size="8", fontWeight="lighter"),
             rx.box(
-                rx.heading("PMTiles", size="8", fontWeight="lighter"),
-                rx.box(
-                    rx.text("Uses the PMTiles plugin and protocol to present a map."),
-                    display="flex",
-                    flex_direction="column",
-                    gap="16px"
-                ),
-                rx.box(
-                    pmtiles_map(),
-                ),
-                rx.code_block("""def pmtiles_map() -> rx.Component:
+                rx.text("Uses the PMTiles plugin and protocol to present a map."),
+                display="flex",
+                flex_direction="column",
+                gap="16px"
+            ),
+            rx.box(
+                pmtiles_map(),
+            ),
+            rx.code_block("""def pmtiles_map() -> rx.Component:
     return map(
         source(
             layer(
@@ -61,16 +58,11 @@ def pmtiles_demo() -> rx.Component:
             longitude=11.2543435, latitude=43.7672134, zoom=13
         ),
     )"""),
-                display="flex",
-                flex_direction="column",
-                gap="48px",
-                width="100%"
-            ),
-            class_name="content",
+            display="flex",
+            flex_direction="column",
+            gap="48px",
+            width="100%"
         ),
-
-        class_name="wrapper",
-        size="4"
     )
 
 

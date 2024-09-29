@@ -2,28 +2,25 @@
 
 import reflex as rx
 
-from ..layout import sidebar, topnav
+from ..layout import layout_container
 import reflex_map as rx_map
 
 
 
 def extrude_3d_demo() -> rx.Component:
-    return rx.container(
-        topnav(),
-        rx.stack(
-            sidebar(),
+    return layout_container(
+        rx.box(
+            rx.heading("Extrude polygons for 3D indoor mapping", size="8", fontWeight="lighter"),
             rx.box(
-                rx.heading("Extrude polygons for 3D indoor mapping", size="8", fontWeight="lighter"),
-                rx.box(
-                    rx.text("Create a 3D indoor map with the fill-extrude-height paint property."),
-                    display="flex",
-                    flex_direction="column",
-                    gap="16px"
-                ),
-                rx.box(
-                    extrude_3d_map(),
-                ),
-                rx.code_block("""def extrude_3d_map() -> rx.Component:
+                rx.text("Create a 3D indoor map with the fill-extrude-height paint property."),
+                display="flex",
+                flex_direction="column",
+                gap="16px"
+            ),
+            rx.box(
+                extrude_3d_map(),
+            ),
+            rx.code_block("""def extrude_3d_map() -> rx.Component:
     return map(
         source(
             layer(
@@ -69,16 +66,11 @@ def extrude_3d_demo() -> rx.Component:
         ),
     )
 """),
-                display="flex",
-                flex_direction="column",
-                gap="48px",
-                width="100%"
-            ),
-            class_name="content",
+            display="flex",
+            flex_direction="column",
+            gap="48px",
+            width="100%"
         ),
-
-        class_name="wrapper",
-        size="4"
     )
 
 

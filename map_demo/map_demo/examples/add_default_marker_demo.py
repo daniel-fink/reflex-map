@@ -4,25 +4,22 @@ from typing import Any, Dict
 import reflex as rx
 import reflex_map as rx_map
 
-from ..layout import sidebar, topnav
+from ..layout import layout_container
 
 def add_default_marker_demo() -> rx.Component:
-    return rx.container(
-        topnav(),
-        rx.stack(
-            sidebar(),
+    return layout_container(
+        rx.box(
+            rx.heading("Add a default marker", size="8", fontWeight="lighter"),
             rx.box(
-                rx.heading("Add a default marker", size="8", fontWeight="lighter"),
-                rx.box(
-                    rx.text("Add a default marker to the map."),
-                    display="flex",
-                    flex_direction="column",
-                    gap="16px"
-                ),
-                rx.box(
-                    default_marker_map(),
-                ),
-                rx.code_block("""def default_marker_map() -> rx.Component:
+                rx.text("Add a default marker to the map."),
+                display="flex",
+                flex_direction="column",
+                gap="16px"
+            ),
+            rx.box(
+                default_marker_map(),
+            ),
+            rx.code_block("""def default_marker_map() -> rx.Component:
     return map(
         marker(
             longitude=-96,
@@ -52,21 +49,13 @@ def add_default_marker_demo() -> rx.Component:
         initialViewState=dict(
             longitude=-96, latitude= 37.8, zoom=3
         ),
-    )"""),
+        )"""),
 
-                display="flex",
-                flex_direction="column",
-                gap="48px",
-                width="100%"
-                
-            ),
-            style={"position": "relative"},
-            class_name="content",
+        display="flex",
+        flex_direction="column",
+        gap="48px"
         ),
-
-        class_name="wrapper",
-        size="4"
-    )
+        )
 
 
 def default_marker_map() -> rx.Component:
