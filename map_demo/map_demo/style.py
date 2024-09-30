@@ -14,7 +14,7 @@ style = {
         "bottom": "4px"
     },
     "pre": {
-        "max-width": "calc(100svw - 66px)",
-        "overflow-x": "auto"
+        "maxWidth": "calc(100svw - 66px)",
+        "overflowX": "auto"
     }
 }

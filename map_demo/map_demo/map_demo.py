@@ -17,32 +17,29 @@ def add_imports(self):
 def index():
     return layout.container(
         "Introduction",
-        rx.link(
-            rx.callout(
-                "Disclaimer: This project is not affiliated with or endorsed by MapLibre GL. It is an independent, open-source integration into the Reflex framework. For the official version, please visit the MapLibre website.",
-                icon="info",
-                variant="outline"
+        # rx.link(
+        #     rx.callout(
+        #         "Disclaimer: This project is not affiliated with or endorsed by MapLibre GL. It is an independent, open-source integration into the Reflex framework. For the official version, please visit the MapLibre website.",
+        #         icon="info",
+        #         variant="outline"
+        #     ),
+        #     href="https://maplibre.org",
+        # ),
+        rx.box(
+            rx.box(
+                "Reflex Map is a wrapper of ",
+                rx.link("React-Map-GL", href="https://visgl.github.io/react-map-gl/"),
+                " in ",
+                rx.link("Reflex", href="https://reflex.dev/"),
+                ".",
             ),
-            href="https://maplibre.org",
-        ),
-        rx.box(
-            rx.link("MapLibre GL JS", href="https://maplibre.org/maplibre-gl-js/docs/"),
-            rx.box(" is a TypeScript library that uses WebGL to render interactive maps from vector tiles in a browser. The customization of the map complies with the ", display="inline"),
-            rx.link("MapLibre Style Spec", href="https://maplibre.org/maplibre-style-spec"),
-            rx.box(". It is part of the ", display="inline"),
-            rx.link("MapLibre ecosystem", href="https://github.com/maplibre"),
-            rx.box(", with a counterpart for Android, iOS, and other platforms called ", display="inline"),
-            rx.link("MapLibre Native", href="https://github.com/maplibre/maplibre-native"),
-            rx.box(".", display="inline")
-        ),
-        rx.box(
-            rx.text("Our Python integration of MapLibre is built on the powerful MapLibre GL JS library, which uses WebGL to render interactive maps from vector tiles directly in the browser."),
-            rx.text("With our Reflex-based solution, Python users can now fully customize maps using the same MapLibre Style Spec, offering precise control over map design and appearance."),
-            rx.text("This project brings the flexibility of MapLibre’s ecosystem—previously accessible primarily through JavaScript—into the hands of Python developers."),
-            rx.text("Just like MapLibre GL JS has its native counterparts for Android and iOS, our Reflex integration is tailored for Python, making high-performance mapping and geospatial visualization available to an even wider audience."),
-            display="flex",
-            flex_direction="column",
-            gap="16px"
+            rx.box(
+                "It surfaces components from React-Map-GL, like ",
+                rx.link("Markers", href="https://visgl.github.io/react-map-gl/docs/api-reference/marker"),
+                " and ",
+                rx.link("Popups", href="https://visgl.github.io/react-map-gl/docs/api-reference/popup"),
+                " for use in Reflex apps.",
+            )
         ),
         rx.box(
             rx.heading("Quick Start", class_name="text-lg lg:text-2xl"),

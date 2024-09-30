@@ -7,16 +7,25 @@ def navbar() -> rx.Component:
     return rx.box(
         rx.box(
             rx.box(
-                rx.box(
+                rx.hstack(
+                    rx.link(
+                        "Reflex Map",
+                        size="2",
+                        fontWeight="900",
+                        color="white",
+                        href="/",
+                    ),
+                    rx.spacer(),
                     rx.link(
                         rx.icon("map-pin"),
-                        "MapLibre GL", size="2", fontWeight="900", href="https://maplibre.org/",
+                        "React Map GL", size="2", fontWeight="500", href="https://visgl.github.io/react-map-gl/",
                         class_name="flex items-center gap-2 text-blue-100"
                     ),
                     rx.link(
-                        " Reflex", size="2", fontWeight="900", color="white", href="/",
+                        " Reflex", size="2", fontWeight="500", color="white", href="https://reflex.dev/",
                     ),
                     class_name="flex items-center gap-2 text-white",
+                    width="100%"
                 ),
                 rx.button(
                     rx.cond(SidebarState.sidebar_open, rx.box(), rx.icon("menu")),

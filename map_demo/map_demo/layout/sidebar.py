@@ -1,6 +1,6 @@
 import reflex as rx
 
-from . import *
+# from . import *
 
 titles = {
     "Introduction": "",
@@ -11,6 +11,7 @@ titles = {
     "Display a popup": "popup",
     "Add a default marker": "add-a-marker",
 }
+
 
 class SidebarState(rx.State):
     sidebar_open: bool = False
@@ -25,8 +26,12 @@ class SidebarState(rx.State):
     def current_url(self) -> str:
         return self.router.page.path
 
+
 def render_example_page_links(title: dict) -> rx.Component:
-    return rx.link(rx.text(title[0], fontSize="0.825rem", color=rx.cond(SidebarState.current_url == f"/{title[1]}", "blue-300", "black")), href=f"/{title[1]}")
+    return rx.link(rx.text(title[0], fontSize="0.825rem",
+                           color=rx.cond(SidebarState.current_url == f"/{title[1]}", "blue-300", "black")),
+                   href=f"/{title[1]}")
+
 
 def sidebar() -> rx.Component:
     return rx.box(
@@ -41,24 +46,26 @@ def sidebar() -> rx.Component:
         mobile_sidebar()
     )
 
+
 def render_example_page_links_mobile(title: dict) -> rx.Component:
     return rx.box(
         rx.link(
             rx.text(
-                title[0], 
-                fontSize="0.825rem", 
+                title[0],
+                fontSize="0.825rem",
                 color="black"
-            ), 
-            href=f"/{title[1]}", 
+            ),
+            href=f"/{title[1]}",
             class_name="p-4 w-full block"
-        ), 
+        ),
         class_name=rx.cond(
             SidebarState.current_url == f"/{title[1]}",
             "block border-b w-full bg-blue-200 border-gray-300 hover:bg-blue-300 transition-colors duration-300 border",
             "block border-b w-full border-gray-300 hover:bg-blue-100 transition-colors duration-300 border"
-        ), 
+        ),
         on_click=SidebarState.close_sidebar()
     )
+
 
 def mobile_sidebar() -> rx.Component:
     return rx.box(
@@ -78,7 +85,7 @@ def mobile_sidebar() -> rx.Component:
             ),
             rx.box(
                 class_name=(
-                   "fixed shadow-md left-0 top-0 h-full w-68 bg-gray-200 text-white z-50 "
+                    "fixed shadow-md left-0 top-0 h-full w-68 bg-gray-200 text-white z-50 "
                     "transition-transform duration-300 ease-in "
                     "-translate-x-full lg:invisible"
                 )
