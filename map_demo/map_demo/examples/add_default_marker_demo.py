@@ -1,33 +1,21 @@
-"""Welcome to Reflex! This file showcases the custom component in a basic app."""
-
-from typing import Any, Dict
 import reflex as rx
 import reflex_map as rx_map
 
-from ..layout import sidebar, topnav
+from .. import layout
 
-def add_default_marker_demo() -> rx.Component:
-    return rx.container(
-        topnav(),
-        rx.stack(
-            sidebar(),
-            rx.box(
-                rx.heading("Add a default marker", size="8", fontWeight="lighter"),
-                rx.box(
-                    rx.text("Add a default marker to the map."),
-                    display="flex",
-                    flex_direction="column",
-                    gap="16px"
-                ),
-                rx.box(
-                    default_marker_map(),
-                ),
-                rx.code_block("""
+def add_default_marker_demo():
+    return layout.container(
+        "Add a default marker",
+        rx.text("Add a default marker to the map."),
+        rx.box(
+            default_marker_map()
+        ),
+        rx.code_block("""
 def default_marker_map() -> rx.Component:
     return rx_map.map(
         rx_map.marker(
-            longitude=-96,
-            latitude=37.8,
+            longitude=-96.123456,
+            latitude=37.845678,
         ),
         rx_map.source(
             rx_map.layer(
@@ -53,27 +41,15 @@ def default_marker_map() -> rx.Component:
             longitude=-96, latitude= 37.8, zoom=3
         ),
     )
-                    """),
-                display="flex",
-                flex_direction="column",
-                gap="48px",
-                width="100%"
-                
-            ),
-            style={"position": "relative"},
-            class_name="content",
-        ),
-
-        class_name="wrapper",
-        size="4"
+        """)
     )
 
 
 def default_marker_map() -> rx.Component:
     return rx_map.map(
         rx_map.marker(
-            longitude=-96,
-            latitude=37.8,
+            longitude=-96.123456,
+            latitude=37.845678,
         ),
         rx_map.source(
             rx_map.layer(

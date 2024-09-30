@@ -6,20 +6,20 @@ class Source(rx.Component):
     library = "react-map-gl"
     tag = "Source"
     
-    type: str = ""
-    url: str | None = None
+    type: rx.Var[str | None] = ""
+    url: rx.Var[str | None] = None
     tiles: list[str] | None = None
-    data: str | dict| None = None
-    bounds: list[float] | None = None
-    scheme: str | None = None
-    minzoom: int | None = None
-    maxzoom: int | None = None
-    attribution: str | None = None
-    promoteId: str | None = None
-    volatile: bool | None = None
-    id: str = ""
-    title: str | None = None
-    tileSize: int | None = None
+    data: rx.Var[str | dict | None] = None
+    bounds: rx.Var[list[float] | None] = None
+    scheme: rx.Var[str | None] = None
+    minzoom: rx.Var[int | None] = None
+    maxzoom: rx.Var[int | None] = None
+    attribution: rx.Var[str | None] = None
+    promoteId: rx.Var[str | None] = None
+    volatile: rx.Var[bool | None] = None
+    title: rx.Var[str | None] = None
+    tileSize: rx.Var[int | None] = None
+    
     
     lib_dependencies: list[str] = ["react-map-gl"]
 

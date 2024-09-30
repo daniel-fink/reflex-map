@@ -32,7 +32,6 @@ reflex = "^0.6"
 [tool.setuptools.packages.find]
 where = ["custom_components"]
 
-
 [build-system]
 requires = ["setuptools", "wheel", "poetry-core"]
 build-backend = "setuptools.build_meta"

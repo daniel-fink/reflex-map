@@ -4,14 +4,14 @@
 
 def get_maplibre_js():
     return """
-    const extractSafeEvent = (features, lngLat, point, originalEvent, type) => {
-        return {
-            features,
-            lngLat,
-            point,
-            originalEvent,
-            type,
-        };
+    const extractSafeEvent = (event) => {
+      return {
+        features: event.features.length ? event.features : null,
+        lngLat: event.lngLat,
+        point: event.point,
+        originalEvent: event.originalEvent,
+        type: event.type,
+      };
     };
 
     export const MapLibre = (props) => {

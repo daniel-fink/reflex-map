@@ -1,29 +1,16 @@
-"""Welcome to Reflex! This file showcases the custom component in a basic app."""
-
 import reflex as rx
-
-from ..layout import sidebar, topnav
 import reflex_map as rx_map
 
+from .. import layout
 
-
-def extrude_3d_demo() -> rx.Component:
-    return rx.container(
-        topnav(),
-        rx.stack(
-            sidebar(),
-            rx.box(
-                rx.heading("Extrude polygons for 3D indoor mapping", size="8", fontWeight="lighter"),
-                rx.box(
-                    rx.text("Create a 3D indoor map with the fill-extrude-height paint property."),
-                    display="flex",
-                    flex_direction="column",
-                    gap="16px"
-                ),
-                rx.box(
-                    extrude_3d_map(),
-                ),
-                rx.code_block("""
+def extrude_3d_demo():
+    return layout.container(
+        "Extrude polygons for 3D indoor mapping",
+        rx.text("Create a 3D indoor map with the fill-extrude-height paint property."),
+        rx.box(
+            extrude_3d_map()
+        ),
+        rx.code_block("""
 def extrude_3d_map() -> rx.Component:
     return rx_map.map(
         rx_map.source(
@@ -70,18 +57,8 @@ def extrude_3d_map() -> rx.Component:
             pitch=10
         ),
     )
-                    """),
-                display="flex",
-                flex_direction="column",
-                gap="48px",
-                width="100%"
-            ),
-            class_name="content",
-        ),
-
-        class_name="wrapper",
-        size="4"
-    )
+        """),
+    ),
 
 
 def extrude_3d_map() -> rx.Component:

@@ -7,8 +7,8 @@ class Marker(rx.Component):
     library = "react-map-gl"
     tag = "Marker"
 
-    longitude: float = 0
-    latitude: float = 0
+    longitude: rx.Var[float]
+    latitude: rx.Var[float]
 
     lib_dependencies: list[str] = ["react-map-gl"]
 

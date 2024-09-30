@@ -7,14 +7,14 @@ class Layer(rx.Component):
     tag = "Layer"
 
     type: str = ""
-    metadata: dict | None = None
-    source: str | None = None
-    minzoom: int | None = None
-    maxzoom: int | None = None
-    filter: list | None = None
-    layout: dict | None = None
-    source_layer: str | None = None
-    paint: dict = {}
+    metadata: rx.Var[dict | None]
+    source: rx.Var[str | None]
+    minzoom: rx.Var[int | None]
+    maxzoom: rx.Var[int | None]
+    filter: rx.Var[list | None]
+    layout: rx.Var[dict | None]
+    source_layer: rx.Var[str | None]
+    paint: rx.Var[dict | None]
 
     lib_dependencies: list[str] = ["react-map-gl"]
 
