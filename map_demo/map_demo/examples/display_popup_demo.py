@@ -3,20 +3,21 @@
 import reflex as rx
 import reflex_map as rx_map
 
-from ..layout import layout_container
+from .. import layout
 
-def display_popup_demo() -> rx.Component:
-    return layout_container(
+def display_popup_demo():
+    return layout.container(
         "Display a popup",
         rx.text("Add a popup to the map."),
         rx.box(
             display_a_popup_map()
         ),
-        rx.code_block("""def display_a_popup_map() -> rx.Component:
-    return map(
-        popup(
+        rx.code_block("""
+def display_a_popup_map() -> rx.Component:
+    return rx_map.map(
+        rx_map.popup(
             rx.html("<h1>Hello World!</h1>"),
-            longitude=-96,
+            longitude=-96.324,
             latitude=37.8,
             closeButton=True,
         ),
@@ -43,8 +44,9 @@ def display_popup_demo() -> rx.Component:
         initialViewState=dict(
             longitude=-96, latitude= 37.8, zoom=3
         ),
-    )""")
-    ),
+    )
+        """)
+    )
 
 
 def display_a_popup_map() -> rx.Component:

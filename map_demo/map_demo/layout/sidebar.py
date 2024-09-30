@@ -28,7 +28,7 @@ class SidebarState(rx.State):
 def render_example_page_links(title: dict) -> rx.Component:
     return rx.link(rx.text(title[0], fontSize="0.825rem", color=rx.cond(SidebarState.current_url == f"/{title[1]}", "blue-300", "black")), href=f"/{title[1]}")
 
-def layout_sidebar() -> rx.Component:
+def sidebar() -> rx.Component:
     return rx.box(
         rx.box(
             rx.heading("Examples", size="3", class_name="mb-4 font-medium fixed bg-white w-[218px] pt-6 -mt-6 pb-2"),

@@ -14,8 +14,8 @@ def add_imports(self):
         "react-syntax-highlighter": {rx.ImportVar(tag="PrismAsyncLight as SyntaxHighlighter")},
     }
 
-def index() -> rx.Component:
-    return layout_container(
+def index():
+    return layout.container(
         "Introduction",
         rx.link(
             rx.callout(

@@ -1,5 +1,3 @@
-"""Welcome to Reflex! This file showcases the custom component in a basic app."""
-
 from typing import Any, Dict, List
 
 import reflex as rx

@@ -1,10 +1,7 @@
-"""Welcome to Reflex! This file showcases the custom component in a basic app."""
-
-from typing import Any, Dict
 import reflex as rx
 import reflex_map as rx_map
 
-from ..layout import layout_container
+from .. import layout
 
 class InfoState(rx.State):
     longitude: float | None = None
@@ -12,7 +9,7 @@ class InfoState(rx.State):
     description: str = ""
     
     def set_selected_feature(self, data):
-        if ("features" in data and data['features']):
+        if "features" in data and data['features']:
             self.description = data['features'][0]['properties']['description']
             self.longitude = data['features'][0]["geometry"]["coordinates"][0]
             self.latitude = data['features'][0]["geometry"]["coordinates"][1]
@@ -21,8 +18,8 @@ class InfoState(rx.State):
             self.latitude = None
             self.longitude = None    
 
-def feature_info_on_click_demo() -> rx.Component:
-    return layout_container(
+def feature_info_on_click_demo():
+    return layout.container(
         "Display feature information on click",
         rx.text("When a user clicks a feature, show some text containing more information."),
         rx.html(
@@ -51,17 +48,26 @@ class InfoState(rx.State):
             self.description = data['features'][0]['properties']['description']
 
         self.clickedLong = data['lngLat']['lng']
-        self.clickedLat = data['lngLat']['lat']"""),
+        self.clickedLat = data['lngLat']['lat']"""
+                      ),
 
-        rx.code_block("""def feature_info_on_click_map() -> rx.Component:
-    return map(
-        source(
-            layer(
+        rx.code_block("""
+def feature_info_on_click_map() -> rx.Component:
+    return rx_map.map(
+        rx.cond(
+            InfoState.longitude is not None and InfoState.latitude is not None,
+            rx_map.marker(
+                longitude=InfoState.longitude,
+                latitude=InfoState.latitude,
+            ),
+        ),
+        rx_map.source(
+            rx_map.layer(
                 id="background",
                 type="background",
                 paint={"background-color": "#e0dfdf"},
             ),
-            layer(
+            rx_map.layer(
                 id="simple-tiles",
                 type="raster",
                 source="raster-tiles",
@@ -74,8 +80,8 @@ class InfoState(rx.State):
             minzoom=0,
             maxzoom=19,
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="places",
                 type="circle",
                 paint={
@@ -90,28 +96,17 @@ class InfoState(rx.State):
             id="places",
             data={
                 'type': 'FeatureCollection',
-                'features': [
-                    {
-                        'type': 'Feature',
-                        'properties': {
-                            'description':
-                                '<strong>Some Data Here</strong><p>Some more data here</p>',
-                            'icon': 'theatre'
-                        },
-                        'geometry': {
-                            'type': 'Point',
-                            'coordinates': [-77.038659, 38.931567]
-                        }
-                    },
-                ]
+                'features': [<...FEATURES...>]
             }
         ),
+
         zoom=11.15,
         initialViewState=dict(
             longitude=-77.04, latitude=38.907, zoom=11.15
         ),
         on_click=InfoState.set_selected_feature
-    )"""),
+    )
+        """),
     )
 
 
@@ -123,7 +118,7 @@ def feature_info_on_click_map() -> rx.Component:
                 longitude=InfoState.longitude,
                 latitude=InfoState.latitude,
             ),
-        ),
+            ),
         rx_map.source(
             rx_map.layer(
                 id="background",

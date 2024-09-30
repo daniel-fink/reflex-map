@@ -1,15 +1,15 @@
 import reflex as rx
 
 from . import *
-from .layout_sidebar import *
-from .layout_navbar import *
+from .sidebar import *
+from .navbar import *
 
-def layout_container(title, *children, **props) -> rx.Component:
+def container(title, *children, **props) -> rx.Component:
     return rx.box(
-        layout_navbar(),
+        navbar(),
         rx.box(
             rx.box(
-                layout_sidebar(),
+                sidebar(),
                 rx.box(
                     rx.box(
                         rx.heading(title, class_name="text-xl lg:text-3xl"),

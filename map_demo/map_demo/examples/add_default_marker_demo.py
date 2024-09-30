@@ -1,23 +1,21 @@
-"""Welcome to Reflex! This file showcases the custom component in a basic app."""
-
-from typing import Any, Dict
 import reflex as rx
 import reflex_map as rx_map
 
-from ..layout import layout_container
+from .. import layout
 
-def add_default_marker_demo() -> rx.Component:
-    return layout_container(
+def add_default_marker_demo():
+    return layout.container(
         "Add a default marker",
         rx.text("Add a default marker to the map."),
         rx.box(
             default_marker_map()
         ),
-        rx.code_block("""def default_marker_map() -> rx.Component:
-    return map(
-        marker(
-            longitude=-96,
-            latitude=37.8,
+        rx.code_block("""
+def default_marker_map() -> rx.Component:
+    return rx_map.map(
+        rx_map.marker(
+            longitude=-96.123456,
+            latitude=37.845678,
         ),
         rx_map.source(
             rx_map.layer(
@@ -42,8 +40,9 @@ def add_default_marker_demo() -> rx.Component:
         initialViewState=dict(
             longitude=-96, latitude= 37.8, zoom=3
         ),
-    )""")
-    ),
+    )
+        """)
+    )
 
 
 def default_marker_map() -> rx.Component:

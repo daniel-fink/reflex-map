@@ -1,20 +1,20 @@
 import reflex as rx
 
 from . import *
-from .layout_sidebar import *
+from .sidebar import *
 
-def layout_navbar() -> rx.Component:
+def navbar() -> rx.Component:
     return rx.box(
         rx.box(
             rx.box(
                 rx.box(
                     rx.link(
                         rx.icon("map-pin"),
-                        "MapLibre GL", size="1.825rem", fontWeight="900", href="https://maplibre.org/",
+                        "MapLibre GL", size="2", fontWeight="900", href="https://maplibre.org/",
                         class_name="flex items-center gap-2 text-blue-100"
                     ),
                     rx.link(
-                        " Reflex", size="1.825rem", fontWeight="900", color="white", href="/",
+                        " Reflex", size="2", fontWeight="900", color="white", href="/",
                     ),
                     class_name="flex items-center gap-2 text-white",
                 ),
