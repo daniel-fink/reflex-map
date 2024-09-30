@@ -1,8 +1,10 @@
 import reflex as rx
 
+# Note: Using kebab-case for css properties in objects is not supported.
+
 style = {
     ".maplibregl-canvas-container": {
-        "min-height": "400px"
+        "minHeight": "400px"
     },
     "canvas": {
         "height": "400px"

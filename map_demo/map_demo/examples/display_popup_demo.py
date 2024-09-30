@@ -20,13 +20,13 @@ def display_popup_demo() -> rx.Component:
             latitude=37.8,
             closeButton=True,
         ),
-        source(
-            layer(
+        rx_map.source(
+            rx_map.layer(
                 id="background",
                 type="background",
                 paint={"background-color": "#e0dfdf"},
             ),
-            layer(
+            rx_map.layer(
                 id="simple-tiles",
                 type="raster",
                 source="raster-tiles",
