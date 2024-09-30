@@ -8,18 +8,12 @@ from ..layout import layout_container
 
 def add_default_marker_demo() -> rx.Component:
     return layout_container(
+        "Add a default marker",
+        rx.text("Add a default marker to the map."),
         rx.box(
-            rx.heading("Add a default marker", size="8", fontWeight="lighter"),
-            rx.box(
-                rx.text("Add a default marker to the map."),
-                display="flex",
-                flex_direction="column",
-                gap="16px"
-            ),
-            rx.box(
-                default_marker_map(),
-            ),
-            rx.code_block("""def default_marker_map() -> rx.Component:
+            default_marker_map()
+        ),
+        rx.code_block("""def default_marker_map() -> rx.Component:
     return map(
         marker(
             longitude=-96,
@@ -49,20 +43,15 @@ def add_default_marker_demo() -> rx.Component:
         initialViewState=dict(
             longitude=-96, latitude= 37.8, zoom=3
         ),
-        )"""),
-
-        display="flex",
-        flex_direction="column",
-        gap="48px"
-        ),
-        )
+    )""")
+    ),
 
 
 def default_marker_map() -> rx.Component:
     return rx_map.map(
         rx_map.marker(
-            longitude=-96,
-            latitude=37.8,
+            longitude=-96.123456,
+            latitude=37.845678,
         ),
         rx_map.source(
             rx_map.layer(

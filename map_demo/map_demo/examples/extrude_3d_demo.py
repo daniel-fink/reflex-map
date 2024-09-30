@@ -9,18 +9,12 @@ import reflex_map as rx_map
 
 def extrude_3d_demo() -> rx.Component:
     return layout_container(
+        "Extrude polygons for 3D indoor mapping",
+        rx.text("Create a 3D indoor map with the fill-extrude-height paint property."),
         rx.box(
-            rx.heading("Extrude polygons for 3D indoor mapping", size="8", fontWeight="lighter"),
-            rx.box(
-                rx.text("Create a 3D indoor map with the fill-extrude-height paint property."),
-                display="flex",
-                flex_direction="column",
-                gap="16px"
-            ),
-            rx.box(
-                extrude_3d_map(),
-            ),
-            rx.code_block("""def extrude_3d_map() -> rx.Component:
+            extrude_3d_map()
+        ),
+        rx.code_block("""def extrude_3d_map() -> rx.Component:
     return map(
         source(
             layer(
@@ -64,14 +58,8 @@ def extrude_3d_demo() -> rx.Component:
         initialViewState=dict(
             longitude=-87.61694, latitude=41.86625, zoom=15.99, pitch=40
         ),
-    )
-"""),
-            display="flex",
-            flex_direction="column",
-            gap="48px",
-            width="100%"
-        ),
-    )
+    )"""),
+    ),
 
 
 def extrude_3d_map() -> rx.Component:
