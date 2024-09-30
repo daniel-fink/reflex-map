@@ -17,26 +17,25 @@ class _MapLayerMouseEvent(rx.Base):
     preventDefault: Any
     defaultPrevented: bool
     # Below features are what we are interested in
-    features: List[Dict[str, Any]]
+    features: List[Dict[str, Any]] | None
 
-def _on_map_layer_mouse_event(e0: _MapLayerMouseEvent) -> Dict[str, float]:
+class _ReactMap_MouseEvent(_MapLayerMouseEvent): 
+    target: Any # Whole map that causes circular reference
+
+def _on_map_layer_mouse_event(e0: _ReactMap_MouseEvent) -> _MapLayerMouseEvent:
     """Maps the onClick args from javascript to the event handled by the Reflex backend in python."""
-    return [
-        e0.event,
-        rx.Var.create_safe(
-            f"extractSafeEvent({e0.features}, {e0.lngLat}, {e0.point}, {e0.originalEvent}, {e0.type})",
-        ),
-    ]
-
+    return rx.vars.var_operation_return(
+        js_expression=f"extractSafeEvent({e0})"
+    ),
 
 class Map(rx.Component):
     tag = "MapLibre"
 
-    initialViewState: dict | None
-    mapStyle: str | None
-    terrain: Optional[Dict[str, Any]]
-    longitude: float | None
-    latitude: float | None
+    initialViewState: rx.Var[dict | None]
+    mapStyle: rx.Var[str | None]
+    terrain: rx.Var[Dict[str, Any] | None]
+    longitude: rx.Var[float | None]
+    latitude: rx.Var[float | None]
 
     lib_dependencies: list[str] = ["react-map-gl", "pmtiles", "mapbox-gl", "maplibre-gl"]
 
