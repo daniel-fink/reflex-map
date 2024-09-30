@@ -52,10 +52,11 @@ def index():
                 flex_direction="column",
                 gap="12px"
             ),
-            rx.code_block("""def default_map() -> rx.Component:
-    return map(
-        source(
-            layer(
+            rx.code_block("""
+def reflex_map() -> rx.Component:
+    return rx_map.map(
+        rx_map.source(
+            rx_map.layer(
                 source="google_maps",
                 type="raster",
             ),
@@ -66,14 +67,15 @@ def index():
             tiles=["https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"],
             attribution="&copy; Google Maps"
         ),
-        search_control(),
-        navigation_control(),
-        fullscreen_control(),
+        rx_map.search_control(),
+        rx_map.navigation_control(),
+        rx_map.fullscreen_control(),
 
         initialViewState=dict(
             longitude=151.209900, latitude=-33.865143, zoom=10
         ),
-    )"""),
+    )
+        """),
             class_name="flex flex-col gap-6 w-full lg:gap-12"
         ),          
   
