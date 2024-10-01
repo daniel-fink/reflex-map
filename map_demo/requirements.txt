@@ -1,5 +1,5 @@
 reflex>=0.6
-reflex-map>=0.2
+reflex-map == 0.2.2
 watchdog>=4.0.2
 watchfiles>=0.24.0
 

@@ -1319,13 +1319,13 @@ ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"
 
 [[package]]
 name = "reflex"
-version = "0.6.0"
+version = "0.6.1"
 description = "Web apps in pure Python."
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "reflex-0.6.0-py3-none-any.whl", hash = "sha256:ad5ed00deaa2f8ad754526c757fcac1259d2514743fa933bdf6fad18be197b51"},
-    {file = "reflex-0.6.0.tar.gz", hash = "sha256:50e7d1948bbd196956932bfdae2ed4872866a68cbc61791afd6dbf9b258b3171"},
+    {file = "reflex-0.6.1-py3-none-any.whl", hash = "sha256:172980f8b0c2ab65f84ab4ee0fbda0bf856dbc28dc76e8b025d331d08422ebba"},
+    {file = "reflex-0.6.1.tar.gz", hash = "sha256:4bc40658d148c835c1a314b9cbbf4b00ba5bd75b9f2d819fab611e5a8a3f58c0"},
 ]
 
 [package.dependencies]
@@ -1347,7 +1347,7 @@ python-engineio = "!=4.6.0"
 python-multipart = ">=0.0.5,<0.1"
 python-socketio = ">=5.7.0,<6.0"
 redis = ">=4.3.5,<6.0"
-reflex-chakra = ">=0.6.0a6"
+reflex-chakra = ">=0.6.0"
 reflex-hosting-cli = ">=0.1.2,<2.0"
 rich = ">=13.0.0,<14.0"
 setuptools = ">=69.1.1,<70.2"
@@ -1365,13 +1365,13 @@ wrapt = [
 
 [[package]]
 name = "reflex-chakra"
-version = "0.6.0"
+version = "0.6.1"
 description = "reflex using chakra components"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "reflex_chakra-0.6.0-py3-none-any.whl", hash = "sha256:eca1593fca67289e05591dd21fbcc8632c119d64a08bdc41fd995055a114cc91"},
-    {file = "reflex_chakra-0.6.0.tar.gz", hash = "sha256:db1c7b48f1ba547bf91e5af103fce6fc7191d7225b414ebfbada7d983e33dd87"},
+    {file = "reflex_chakra-0.6.1-py3-none-any.whl", hash = "sha256:824d461264b6d2c836ba4a2a430e677a890b82e83da149672accfc58786442fa"},
+    {file = "reflex_chakra-0.6.1.tar.gz", hash = "sha256:4b9b3c8bada19cbb4d1b8d8bc4ab0460ec008a91f380010c34d416d5b613dc07"},
 ]
 
 [package.dependencies]
